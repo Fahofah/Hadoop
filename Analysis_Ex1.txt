@@ -1,0 +1,13 @@
+hdfs dfs -mkdir/userInfo
+hadoop fs -put /home/cloudera/Desktop/ml-100k/u.user.txt /userInput
+hive
+CREATE EXTERNAL TABLE userInfoReal (id int , age int, gender String, occupation String, zipcode String)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '|'
+LINES TERMINATED BY '\n'
+;
+LOAD DATA LOCAL INPATH '/home/cloudera/Desktop/ml-100k/u.user' INTO TABLE userInfoReal;
+SELECT * FROM userInfoReal;
+SELECT COUNT(*) FROM userInfoReal WHERE occupation='student'; 
+SELECT occupation,COUNT(*) FROM userInfoReal GROUP BY occupation;
+

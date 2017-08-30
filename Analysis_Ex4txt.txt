@@ -1,0 +1,11 @@
+## users ##
+SELECT count(*) FROM exdb.userInfo where occupation='student';
+SELECT occupation, gender, count(*) AS Poppulation FROM exdb.userinfo GROUP BY occupation,gender ORDER BY Poppulation DESC;
+
+## movies ## 
+SELECT title,imdb FROM moviesinfo WHERE imdb='';
+select title,release_date from moviesInfo order by from_unixtime(unix_timestamp(release_date, 'dd-MMM-yyyy')) asc limit 10; 
+select title from moviesinfo where horror = 1 and comedy = 1 and sci_fi = 1;
+
+## complex types ## 
+cdh version error

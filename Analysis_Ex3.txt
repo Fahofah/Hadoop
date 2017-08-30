@@ -1,0 +1,12 @@
+CREATE TABLE customers (cust_id INT, fname STRING, lname STRING, email STRING, 
+    phone MAP<STRING, STRING>, order_ids ARRAY<INT>, 
+    order_value STRUCT<min:INT,max:INT,avg:INT,total:INT>)
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' COLLECTION ITEMS TERMINATED BY ',' 
+    MAP KEYS TERMINATED BY ':' LINES TERMINATED BY '\n';
+
+load data local inpath '/home/cloudera/Desktop/test-cust.txt' overwrite into table customers;
+
+select * from customers;
+
+select *  from customers order by order_value.total desc;
+

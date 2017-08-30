@@ -1,0 +1,21 @@
+dfs -put /home/cloudera/Desktop/ml-100k/u.item /movies;
+
+create table moviesInfo (id int, title String, release_date sTRING, video_release sTRING, 
+    imdb String, Unknown_genre int, action int, adventure int, animation int, children int, 
+    comedy int, crime int, documentary int, drama int, fantasy int, film_noir int,horror int,
+    musical int,mystery int, romance int, sci_fi int, thriller int, war int , western int)
+
+    row format delimited
+    fields terminated by'|'
+    lines terminated by '\n'
+    stored as textfile
+    ;   
+
+load data inpath '/movies/u.item' into table moviesInfo;
+
+select count(*) from moviesInfo where horror = 1;
+
+select title,release_date from moviesInfo order by from_unixtime(unix_timestamp(release_date, 'dd-MMM-yyyy')) desc limit 10;
+
+select title,video_release from moviesInfo where video_release != '';
+
