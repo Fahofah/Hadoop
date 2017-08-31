@@ -1,0 +1,8 @@
+ dfs -mkdir /movieTags;
+ dfs -put /home/cloudera/Desktop/ml-20m/tags.csv /movieTags;
+create table tags(userId int ,movieId int ,tag string , time timestamp)
+row format delimited
+fields terminated by ','
+lines terminated by '\n';
+
+SELECT EXPLODE(NGRAMS(SENTENCES(LOWER(tag)),2,5)) AS bigrams from tags;
